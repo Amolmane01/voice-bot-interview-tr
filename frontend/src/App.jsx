@@ -55,10 +55,13 @@ function App() {
     recognitionRef.current.start();
   };
 
+  // ==================== UPDATED FOR DEPLOYMENT ====================
   const handleSendToAI = async (text) => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5003/api/chat', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5003';
+      
+      const res = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text })
@@ -77,6 +80,7 @@ function App() {
     }
     setLoading(false);
   };
+  // ================================================================
 
   const speak = (text) => {
     const synth = window.speechSynthesis;

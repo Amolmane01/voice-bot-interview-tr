@@ -9,7 +9,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    origin: [
+        'http://localhost:5173', 
+        'http://localhost:3000',
+        'https://voice-bot-frontend.onrender.com'   // ← Add this
+    ],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
 }));
@@ -40,7 +44,7 @@ app.post('/api/chat', async (req, res) => {
         console.log("Received:", message);
 
         const model = genAI.getGenerativeModel({ 
-            model: "gemini-2.5-flash",     // ← Best for free tier
+            model: "gemini-2.5-flash",
             systemInstruction: systemPrompt,
             generationConfig: {
                 temperature: 0.75,
@@ -67,7 +71,7 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok', port: process.env.PORT });
 });
 
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5003;   // ← Updated
 app.listen(PORT, () => {
-    console.log(`🚀 Backend running on http://localhost:${PORT}`);
+    console.log(`🚀 Backend running on port ${PORT}`);
 });
