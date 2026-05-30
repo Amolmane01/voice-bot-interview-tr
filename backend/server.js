@@ -12,7 +12,7 @@ app.use(cors({
     origin: [
         'http://localhost:5173', 
         'http://localhost:3000',
-        'https://voice-bot-frontend.onrender.com'   // ← Add this
+        'https://voice-bot-frontend-3hfg.onrender.com'   // ← Add your frontend URL
     ],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type']
